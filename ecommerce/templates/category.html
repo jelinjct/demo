@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <img src="{% static 'img/home.jpg' %}"  height='300px' width='100%'   >
+
+<br>
+<center>
+<h2><i>TOP  PICKS</i></h2>
+</center>
+<p>Makeup  Dresses For Girls  T-Shirts  Sandals  Headphones   Designers Sarees  Blazers For Men  Handbags
+    Ladies Watches  Bags  Sport Shoes  Reebok Shoes  Puma Shoes  Boxers  Wallets  Tops  Earrings
+    Fastrack Watches  Kurtis  Nike  Smart Watches  Titan Watches  Designer Blouse  Gowns  Rings
+    Lipstick  Saree  Watches  Dresses  Lehenga  Nike Shoes  GogglesSuit  Chinos  Shoes  Adidas Shoes</p>
+</div>
+<div class="container" style="margin-bottom:100px">
+<div class="row">
+    {% for i in c %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{{i.image.url}}" class="card-img-top" height="250px" width="100%" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{i.name}}</h5>
+                <a href="{% url 'shop:allproducts' i.slug  %}" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}
+
+

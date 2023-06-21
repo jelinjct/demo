@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container" style="margin-bottom:100px">
+{% if not cart %}
+    <div>
+        <h1 class="text-center">Cart is empty</h1>
+    </div>
+    <div>
+        <strong><a href="{% url 'shop:allprodcat' %}">Continue shopping</a></strong>
+    </div>
+     {% else %}
+    <div class="row mx-auto">
+        <h1 style="width:100%">Shopping Cart</h1>
+        <div class="col-sm-8">
+            <table class="table table-bordered border-dark" >
+
+                 <tr>
+                     <th colspan="12">
+                              <center>YOUR ITEMS</center>
+                     </th>
+
+                           {% for i in cart %}
+                            <tr>
+                                <td><img src="{{i.products.image.url}}" style="height:150px;width:150px;"></td>
+                                <td>{{i.products.name}}</td>
+                                <td>ID. {{i.products.id}}</td>
+                                <td>UnitPrice: {{i.products.price}}</td>
+                                <td>{{i.quantity}}*{{i.products.price}}</td>
+
+                                <td>{{i.subtotal}}</td>
+
+                                  {% if i.quantity < i.products.stock %}
+                                         <td>{{i.quantity}}</td>
+                                         <td> <a href="{% url 'cart:add_cart' i.products.id  %}"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                         <a href="{% url 'cart:cart_remove' i.products.id  %}"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                                         <a href="{% url 'cart:full_remove' i.products.id  %}"><i class="fa-solid fa-trash"></i></a>
+                                         </td>
+                                  {% else %}
+                                          <td> <a href="{% url 'cart:cart_remove' i.products.id  %}"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                                           <a href="{% url 'cart:full_remove' i.products.id  %}"><i class="fa-solid fa-trash"></i></a>
+                                         </td>
+                                  {% endif %}
+
+                            </tr>
+
+                           {% endfor %}
+                 </tr>
+
+            </table>
+        </div>
+    {% endif %}
+        <div class="col-sm-3">
+
+            <table class="'table ">
+                <th colspan="5" class="text-center">
+                    CheckOut
+                </th>
+                <tr>
+                <th>TOTAL PRICE:  {{total}}</th>
+                </tr>
+                <br><br>
+                <tr>
+                   <th> <a href="{% url 'shop:allprodcat' %}"><button class="btn btn-primary" >ConTinue..</button></a>
+                    <th>  <a href="{% url 'cart:order' %}"><button class="btn btn-primary" >Place Order</button></a>
+               </th>  </tr>
+            </table><br>
+
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+<!--"{{i.products.image.url}}, -->
+<!--products foreinn key anu , apo aa producnt image-->

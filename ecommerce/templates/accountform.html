@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{%load static %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<form method="POST">
+{% csrf_token %}
+<div class="mb-3">
+  <label  class="form-label">Adress</label>
+  <input type="text" class="form-control" name="x" placeholder="Enter  adress">
+</div>
+<div class="mb-3">
+  <label  class="form-label">PHONENUMBER</label>
+  <input type="text" class="form-control" name="y" placeholder="Enter the number">
+</div>
+<div class="mb-3">
+  <label  class="form-label">ACCOUNT NUMBER</label>
+  <input type="text" class="form-control" name="z" placeholder="Enter account number">
+</div>
+
+    <center>
+         <input type="submit" >
+    </center>
+</form>
+
+{% endblock%}
